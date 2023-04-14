@@ -26,8 +26,8 @@ button.addEventListener('click', function() {
   // get user's location
   navigator.geolocation.getCurrentPosition(function(position) {
     const location = {
-      latitude: Number(position.coords.latitude.toFixed(2)),
-      longitude: Number(position.coords.longitude.toFixed(2))
+      latitude: Number(position.coords.latitude),
+      longitude: Number(position.coords.longitude)
     };
 
     // increment click count and store in local storage with location
@@ -51,9 +51,9 @@ button.addEventListener('click', function() {
 
 function addRowToTable(latitude, longitude, clickCount) {
   const newRow = tableBody.insertRow();
-  newRow.setAttribute("id", `${latitude.toFixed(2)},${longitude.toFixed(2)}`);
-  newRow.insertCell().textContent = latitude.toFixed(2);
-  newRow.insertCell().textContent = longitude.toFixed(2);
+  newRow.setAttribute("id", `${latitude},${longitude}`);
+  newRow.insertCell().textContent = latitude;
+  newRow.insertCell().textContent = longitude;
   newRow.insertCell().textContent = clickCount
 }
 
