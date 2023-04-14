@@ -26,8 +26,8 @@ button.addEventListener('click', function() {
   // get user's location
   navigator.geolocation.getCurrentPosition(function(position) {
     const location = {
-      latitude: position.coords.latitude,
-      longitude: position.coords.longitude
+      latitude: Number(position.coords.latitude.toFixed(2)),
+      longitude: Number(position.coords.longitude.toFixed(2))
     };
 
     // increment click count and store in local storage with location
@@ -51,14 +51,14 @@ button.addEventListener('click', function() {
 
 function addRowToTable(latitude, longitude, clickCount) {
   const newRow = tableBody.insertRow();
-  newRow.setAttribute("id", `${latitude},${longitude}`);
-  newRow.insertCell().textContent = latitude;
-  newRow.insertCell().textContent = longitude;
+  newRow.setAttribute("id", `${latitude.toFixed(2)},${longitude.toFixed(2)}`);
+  newRow.insertCell().textContent = latitude.toFixed(2);
+  newRow.insertCell().textContent = longitude.toFixed(2);
   newRow.insertCell().textContent = clickCount
 }
 
 function updateTable(location, clickCount) {
-  const existingRow = document.getElementById(`${location.latitude},${location.longitude}`);
+  const existingRow = document.getElementById(`${location.latitude.toFixed(2)},${location.longitude.toFixed(2)}`);
   if (existingRow) {
     existingRow.cells[2].textContent = clickCount;
   } else {
